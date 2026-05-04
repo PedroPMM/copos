@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Laboratório Premium</title>
+    <style>
+        body {
+            margin: 0;
+            background: radial-gradient(circle, #1a1a1a 0%, #000 100%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            gap: 100px;
+        }
+
+        /* Container do Béquer */
+        .beaker {
+            position: relative;
+            width: 150px;
+            height: 200px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 2px solid rgba(255, 255, 255, 0.15);
+            border-top: none;
+            border-radius: 0 0 20px 20px;
+            backdrop-filter: blur(12px);
+            box-shadow: inset 0 0 15px rgba(255, 255, 255, 0.05);
+        }
+
+        /* Reflexo de luz lateral no vidro */
+        .beaker::after {
+            content: "";
+            position: absolute;
+            top: 10%;
+            left: 10px;
+            width: 8px;
+            height: 70%;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            filter: blur(2px);
+        }
+
+        /* Boca do vidro (Anel superior) */
+        .beaker-top {
+            position: absolute;
+            top: -12px;
+            left: -2px;
+            width: calc(100% + 4px);
+            height: 25px;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            background: rgba(20, 20, 20, 0.8);
+            z-index: 10;
+        }
+
+        /* Líquido Base */
+        .liquid {
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            transition: all 0.5s ease-in-out;
+            animation-duration: 4s;
+            animation-iteration-count: infinite;
+            animation-direction: alternate;
+            animation-timing-function: ease-in-out;
+            border-radius: 0 0 18px 18px;
+        }
+
+        /* Superfície do líquido (Cria o efeito 3D no topo) */
+        .liquid-surface {
+            position: absolute;
+            top: -10px;
+            width: 100%;
+            height: 20px;
+            border-radius: 50%;
+            background: inherit;
+            filter: brightness(1.2);
+        }
+
+        /* BÉQUER 1 - Ciano Neon */
+        .blue {
+            background: linear-gradient(to top, #00d2ff, #3a7bd5);
+            box-shadow: 0 0 30px rgba(0, 210, 255, 0.3);
+            animation-name: fill-up;
+        }
+
+        /* BÉQUER 2 - Rosa/Laranja Neon */
+        .orange {
+            background: linear-gradient(to top, #ff0844, #ffb199);
+            box-shadow: 0 0 30px rgba(255, 8, 68, 0.3);
+            animation-name: fill-down;
+        }
+
+        /* Medidores Laterais */
+        .marks {
+            position: absolute;
+            right: 15px;
+            top: 40px;
+            bottom: 30px;
+            width: 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: flex-end;
+            z-index: 5;
+        }
+
+        .mark {
+            width: 8px;
+            height: 2px;
+            background: rgba(255, 255, 255, 0.2);
+        }
+        .mark.long { width: 15px; background: rgba(255, 255, 255, 0.4); }
+
+        /* Animações Sincronizadas */
+        @keyframes fill-up {
+            from { height: 15%; }
+            to { height: 85%; }
+        }
+
+        @keyframes fill-down {
+            from { height: 85%; }
+            to { height: 15%; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="beaker">
+        <div class="beaker-top"></div>
+        <div class="marks">
+            <div class="mark long"></div><div class="mark"></div>
+            <div class="mark long"></div><div class="mark"></div>
+            <div class="mark long"></div><div class="mark"></div>
+        </div>
+        <div class="liquid blue">
+            <div class="liquid-surface"></div>
+        </div>
+    </div>
+
+    <div class="beaker">
+        <div class="beaker-top"></div>
+        <div class="marks">
+            <div class="mark long"></div><div class="mark"></div>
+            <div class="mark long"></div><div class="mark"></div>
+            <div class="mark long"></div><div class="mark"></div>
+        </div>
+        <div class="liquid orange">
+            <div class="liquid-surface"></div>
+        </div>
+    </div>
+
+</body>
+</html>
